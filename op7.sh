@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Copy the syslog file to the current working directory
-cp /var/log/syslog . ""
+cp /var/log/syslog .
 
 # Check if the copy was successful
 if [ $? -eq 0 ]; then
