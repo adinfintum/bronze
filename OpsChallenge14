@@ -45,7 +45,7 @@ def infect(files_targeted):
 def detonate():
     if datetime.datetime.now().month == 5 and datetime.datetime.now().day == 9:
         print("You have been hacked")
-(The infect function opens the current script file, reads its first 39 lines, and saves them into a string called virusstring. This essentially
+(The infect function opens the current script file and saves them into a string called virusstring. This essentially
 infects the targeted files by attaching the virusstring to them. The detonate function checks the current date and prints "You have been hacked" 
 with the date stamp May 9th.)
 
