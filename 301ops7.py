@@ -12,17 +12,17 @@ filepath = input("Enter file path:")
 # Declaration of functions
 
 ### Declare a function here
-
-for (root, dirs, files) in os.walk("testdir"):
-    ### Add a print command here to print ==root==
-    print(root)
-    ### Add a print command here to print ==dirs==
-    print(dirs)
-    ### Add a print command here to print ==files==
-    print(files)
+def traverse(filepath):
+    for (root, dirs, files) in os.walk(filepath):
+        ### Add a print command here to print ==root==
+        print(root)
+        ### Add a print command here to print ==dirs==
+        print(dirs)
+        ### Add a print command here to print ==files==
+        print(files)
 
 # Main
 
 ### Pass the variable into the function here
-
+traverse(filepath)
 # End
